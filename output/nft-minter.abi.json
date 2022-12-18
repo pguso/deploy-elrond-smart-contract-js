@@ -1,0 +1,140 @@
+{
+    "buildInfo": {
+        "rustc": {
+            "version": "1.67.0-nightly",
+            "commitHash": "95a3a7277b44bbd2dd3485703d9a05f64652b60e",
+            "commitDate": "2022-10-31",
+            "channel": "Nightly",
+            "short": "rustc 1.67.0-nightly (95a3a7277 2022-10-31)"
+        },
+        "contractCrate": {
+            "name": "nft-minter",
+            "version": "0.0.0",
+            "gitVersion": "v0.37.0-6-gb5d3a416c"
+        },
+        "framework": {
+            "name": "elrond-wasm",
+            "version": "0.37.0"
+        }
+    },
+    "name": "NftMinter",
+    "constructor": {
+        "inputs": [],
+        "outputs": []
+    },
+    "endpoints": [
+        {
+            "name": "createNft",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "name",
+                    "type": "bytes"
+                },
+                {
+                    "name": "royalties",
+                    "type": "BigUint"
+                },
+                {
+                    "name": "uri",
+                    "type": "bytes"
+                },
+                {
+                    "name": "selling_price",
+                    "type": "BigUint"
+                },
+                {
+                    "name": "opt_token_used_as_payment",
+                    "type": "optional<TokenIdentifier>",
+                    "multi_arg": true
+                },
+                {
+                    "name": "opt_token_used_as_payment_nonce",
+                    "type": "optional<u64>",
+                    "multi_arg": true
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "claimRoyaltiesFromMarketplace",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "marketplace_address",
+                    "type": "Address"
+                },
+                {
+                    "name": "token_id",
+                    "type": "TokenIdentifier"
+                },
+                {
+                    "name": "token_nonce",
+                    "type": "u64"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "issueToken",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "payableInTokens": [
+                "EGLD"
+            ],
+            "inputs": [
+                {
+                    "name": "token_name",
+                    "type": "bytes"
+                },
+                {
+                    "name": "token_ticker",
+                    "type": "bytes"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "setLocalRoles",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [],
+            "outputs": []
+        },
+        {
+            "name": "buyNft",
+            "mutability": "mutable",
+            "payableInTokens": [
+                "*"
+            ],
+            "inputs": [
+                {
+                    "name": "nft_nonce",
+                    "type": "u64"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "getNftPrice",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "nft_nonce",
+                    "type": "u64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "optional<multi<EgldOrEsdtTokenIdentifier,u64,BigUint>>",
+                    "multi_result": true
+                }
+            ]
+        }
+    ],
+    "events": [],
+    "hasCallback": true,
+    "types": {}
+}
